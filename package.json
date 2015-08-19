@@ -1,6 +1,6 @@
 {
   "name": "generator-php-commandline-app",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Yeoman generator to scaffold a PHP command line app based on Symfony's Console Component.",
   "license": "MIT",
   "main": "app/index.js",

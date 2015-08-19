@@ -10,12 +10,12 @@ To avoid miscommunication, there needs to be a brief explanation regarding the u
 
 Unless specified, *namespace* refers to the **command** namespace.
 ## v1.0
-- [ ] Generate an app with:
-	- [ ] Using the directory name (the yeoman app name) as the PHP namespace / app name.
-	- [ ] A single command file/class using the namespace as the file/class name (suffixed with *Command*).
-	- [ ] A single command named *example* using the namespace as the command namespace. 
-	- [ ] The entrypoint uses the (slugged) app name as it's name.
-	- [ ] Composer.json project name and autoload path settings.
+- [x] Generate an app with:
+	- [x] Using the directory name (the yeoman app name) as the PHP namespace / app name.
+	- [x] A single command file/class using the namespace as the file/class name (suffixed with *Command*).
+	- [x] A single command named *example* using the namespace as the command namespace. 
+	- [x] The entrypoint uses the (slugged) app name as it's name.
+	- [x] Composer.json project name and autoload path settings.
 
 ## v1.1
 - [ ] Extend the generator with:
