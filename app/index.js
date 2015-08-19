@@ -4,6 +4,7 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var fs = require('fs-extra');
 var path = require('path');
+var cc = require('change-case');
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
