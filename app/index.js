@@ -55,13 +55,37 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     app: function () {
-      this.fs.copy(
-        this.templatePath('_package.json'),
-        this.destinationPath('package.json')
+      this.fs.copyTpl(
+        this.templatePath('_app'),
+        this.destinationPath(this.settings.entrypointName), 
+        { 
+          PHP_NAMESPACE: this.settings.phpNamespace,
+          APPLICATION_NAME: this.settings.appName,
+          APPLICATION_VERSION: this.settings.appVersion,
+          PHP_CLASSNAME: this.settings.phpClassName
+        }
       );
-      this.fs.copy(
-        this.templatePath('_bower.json'),
-        this.destinationPath('bower.json')
+
+      this.fs.copyTpl(
+        this.templatePath('_composer.json'),
+        this.destinationPath('composer.json'), 
+        { 
+          PROJECT_NAME: this.settings.entrypointName,
+          PHP_NAMESPACE: this.settings.phpNamespace
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('src/App/Command/StubCommand.php'),
+        this.destinationPath(this.settings.phpNamespace + '/Command/' + this.settings.phpClassName + '.php'), 
+        { 
+          PHP_NAMESPACE: this.settings.phpNamespace,
+          PHP_CLASSNAME: this.settings.phpClassName,
+          COMMAND_NAMESPACE: this.settings.commandNamespace,
+          COMMAND_NAME: this.settings.commandName,
+          COMMAND_DESCRIPTION: 'The command description goes here',
+          COMMAND_HELP: 'The command help text goes here'
+        }
       );
     },
 
