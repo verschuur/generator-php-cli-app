@@ -20,6 +20,16 @@ module.exports = yeoman.generators.Base.extend({
     };
   },
 
+  showSettings: function () {
+    this.log.write('phpNamespace: ' + this.settings.phpNamespace + '\n');
+    this.log.write('phpClassName: ' + this.settings.phpClassName + '\n');
+    this.log.write('commandNamespace: ' + this.settings.commandNamespace + '\n');
+    this.log.write('commandName: ' + this.settings.commandName + '\n');
+    this.log.write('appName: ' + this.settings.appName + '\n');
+    this.log.write('appVersion: ' + this.settings.appVersion + '\n');
+    this.log.write('entrypointName: ' + this.settings.entrypointName + '\n');
+  },
+
   // prompting: function () {    
   //   var done = this.async();
  
