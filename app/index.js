@@ -105,6 +105,8 @@ module.exports = yeoman.generators.Base.extend({
         if(err === 0) {
           this.log.write('Scaffolding complete. Run your app by calling ');
           this.log.write(chalk.green('php ' + this.settings.entrypointName + '\n'));
+          this.log.write(chalk.red('Update your composer.json package name. It still has the default vendor name.' + '\n'));
+          this.log.write(chalk.white('Don\'t forget to update the README.md and the rest of the composer.json settings (author, description etc).' + '\n'));
         }
       }.bind(this));    
   },
