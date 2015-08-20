@@ -18,6 +18,20 @@ module.exports = yeoman.generators.Base.extend({
       appVersion: '1.0', // app version used in composer and app settings
       entrypointName: cc.paramCase(this.appname), // app entry point / php executable
     };
+  // note: arguments and options should be defined in the constructor.
+  constructor: function () {
+    yeoman.generators.Base.apply(this, arguments);
+
+    // option to show the settings
+    this.option('settings', {
+      desc: 'Show the various names which will be used for namespacing etc.',
+      //alias: 's', // aliases dont work at the moment. See https://github.com/yeoman/yo/issues/319
+      type: Boolean,
+      defaults: false,
+      hide: false
+    });
+  },
+
   _showSettings: function () {
     this.log.write('PHP namespace: ' + this.settings.phpNamespace + '\n');
     this.log.write('PHP classname: ' + this.settings.phpClassName + '\n');
