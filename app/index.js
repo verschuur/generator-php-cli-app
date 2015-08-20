@@ -18,16 +18,16 @@ module.exports = yeoman.generators.Base.extend({
       appVersion: '1.0', // app version used in composer and app settings
       entrypointName: cc.paramCase(this.appname), // app entry point / php executable
     };
+  _showSettings: function () {
+    this.log.write('PHP namespace: ' + this.settings.phpNamespace + '\n');
+    this.log.write('PHP classname: ' + this.settings.phpClassName + '\n');
+    this.log.write('Command namespace: ' + this.settings.commandNamespace + '\n');
+    this.log.write('Command name: ' + this.settings.commandName + '\n');
+    this.log.write('App name: ' + this.settings.appName + '\n');
+    this.log.write('App version: ' + this.settings.appVersion + '\n');
+    this.log.write('Entrypoint name: ' + this.settings.entrypointName + '\n');
   },
 
-  showSettings: function () {
-    // this.log.write('phpNamespace: ' + this.settings.phpNamespace + '\n');
-    // this.log.write('phpClassName: ' + this.settings.phpClassName + '\n');
-    // this.log.write('commandNamespace: ' + this.settings.commandNamespace + '\n');
-    // this.log.write('commandName: ' + this.settings.commandName + '\n');
-    // this.log.write('appName: ' + this.settings.appName + '\n');
-    // this.log.write('appVersion: ' + this.settings.appVersion + '\n');
-    // this.log.write('entrypointName: ' + this.settings.entrypointName + '\n');
   },
 
   // prompting: function () {    
