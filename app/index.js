@@ -7,17 +7,6 @@ var path = require('path');
 var cc = require('change-case');
 
 module.exports = yeoman.generators.Base.extend({
-  
-  settings: function () {
-    this.settings = {
-      phpNamespace: cc.pascalCase(this.appname),
-      phpClassName: cc.pascalCase(this.appname) + 'Command', // PHP file and classname (with the 'Command' suffix)
-      commandNamespace: cc.paramCase(this.appname), // command namespace, e.g. foobar:example (foobar)
-      commandName: cc.paramCase('example'), // command name, e.g. foobar:example (example)
-      appName: cc.titleCase(this.appname), // app name used in composer and app settings
-      appVersion: '1.0', // app version used in composer and app settings
-      entrypointName: cc.paramCase(this.appname), // app entry point / php executable
-    };
   // note: arguments and options should be defined in the constructor.
   constructor: function () {
     yeoman.generators.Base.apply(this, arguments);
@@ -42,6 +31,26 @@ module.exports = yeoman.generators.Base.extend({
     this.log.write('Entrypoint name: ' + this.settings.entrypointName + '\n');
   },
 
+  /**
+   * Running context priorities
+   * http://yeoman.io/authoring/running-context.html
+   */
+  initializing: {
+    settings: function () {
+      this.settings = {
+        phpNamespace: cc.pascalCase(this.appname),
+        phpClassName: cc.pascalCase(this.appname) + 'Command', // PHP file and classname (with the 'Command' suffix)
+        commandNamespace: cc.paramCase(this.appname), // command namespace, e.g. foobar:example (foobar)
+        commandName: cc.paramCase('example'), // command name, e.g. foobar:example (example)
+        appName: cc.titleCase(this.appname), // app name used in composer and app settings
+        appVersion: '1.0', // app version used in composer and app settings
+        entrypointName: cc.paramCase(this.appname), // app entry point / php executable
+      };
+
+      if(this.options.settings) {
+        this._showSettings();
+        return;
+      }
   },
 
   // prompting: function () {    
@@ -66,6 +75,9 @@ module.exports = yeoman.generators.Base.extend({
   //     done();
   //   }.bind(this));
   // },
+
+  
+  },
 
   configuring: {
     app: function () {
