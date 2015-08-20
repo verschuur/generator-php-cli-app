@@ -24,8 +24,6 @@ Unless specified, *namespace* refers to the **command** namespace.
 ## v1.2
 - [ ] Extend the generator with:
 	- [ ] Generating multiple commands, based on a space separated input. For example:
-	 `yo generate foo bar HelloWorld`
-	 would create `FooCommand`, `BarCommand` and `HelloWorldCommand`.
 
 ## v1.3
 - [ ] Extend the generator with:
