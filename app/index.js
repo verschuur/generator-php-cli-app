@@ -53,6 +53,31 @@ module.exports = yeoman.generators.Base.extend({
   //   }.bind(this));
   // },
 
+  configuring: {
+    app: function () {
+      this.fs.copyTpl(
+        this.templatePath('_composer.json'),
+        this.destinationPath('composer.json'), 
+        { 
+          PROJECT_NAME: this.settings.entrypointName,
+          PHP_NAMESPACE: this.settings.phpNamespace
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('_README.md'),
+        this.destinationPath('README.md'), 
+        { 
+          APPLICATION_NAME: this.settings.appName,
+          COMMAND_NAMESPACE: this.settings.commandNamespace,
+          COMMAND_NAME: this.settings.commandName,
+          PROJECT_NAME: this.settings.entrypointName
+        }
+      );
+
+    }
+  },
+
   writing: {
     app: function () {
       this.fs.copyTpl(
@@ -63,15 +88,6 @@ module.exports = yeoman.generators.Base.extend({
           APPLICATION_NAME: this.settings.appName,
           APPLICATION_VERSION: this.settings.appVersion,
           PHP_CLASSNAME: this.settings.phpClassName
-        }
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('_composer.json'),
-        this.destinationPath('composer.json'), 
-        { 
-          PROJECT_NAME: this.settings.entrypointName,
-          PHP_NAMESPACE: this.settings.phpNamespace
         }
       );
 
@@ -90,16 +106,7 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     projectfiles: function () {
-      this.fs.copyTpl(
-        this.templatePath('_README.md'),
-        this.destinationPath('README.md'), 
-        { 
-          APPLICATION_NAME: this.settings.appName,
-          COMMAND_NAMESPACE: this.settings.commandNamespace,
-          COMMAND_NAME: this.settings.commandName,
-          PROJECT_NAME: this.settings.entrypointName
-        }
-      );
+      
     }
   },
 
