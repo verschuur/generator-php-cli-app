@@ -77,7 +77,7 @@ module.exports = yeoman.generators.Base.extend({
 
       this.fs.copyTpl(
         this.templatePath('src/App/Command/StubCommand.php'),
-        this.destinationPath(this.settings.phpNamespace + '/Command/' + this.settings.phpClassName + '.php'), 
+        this.destinationPath('src/' + this.settings.phpNamespace + '/Command/' + this.settings.phpClassName + '.php'), 
         { 
           PHP_NAMESPACE: this.settings.phpNamespace,
           PHP_CLASSNAME: this.settings.phpClassName,

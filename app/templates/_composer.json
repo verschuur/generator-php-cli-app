@@ -5,7 +5,7 @@
     },
     "autoload": {
         "psr-4": {
-            "<%=PHP_NAMESPACE%>\\": "<%=PHP_NAMESPACE%>"
+            "<%=PHP_NAMESPACE%>\\": "src\\<%=PHP_NAMESPACE%>"
         }
     }
 }
