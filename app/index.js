@@ -104,6 +104,13 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.spawnCommand('composer', ['install']);
+    this.spawnCommand('composer', ['install'])
+      .on('exit', function (err) {
+        if(err === 0) {
+          this.log.write('Scaffolding complete. Run your app by calling ');
+          this.log.write(chalk.green('php ' + this.settings.entrypointName + '\n'));
+        }
+      }.bind(this));    
   }
+
 });
