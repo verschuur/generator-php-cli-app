@@ -90,7 +90,16 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     projectfiles: function () {
-
+      this.fs.copyTpl(
+        this.templatePath('_README.md'),
+        this.destinationPath('README.md'), 
+        { 
+          APPLICATION_NAME: this.settings.appName,
+          COMMAND_NAMESPACE: this.settings.commandNamespace,
+          COMMAND_NAME: this.settings.commandName,
+          PROJECT_NAME: this.settings.entrypointName
+        }
+      );
     }
   },
 
