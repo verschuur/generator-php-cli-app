@@ -9,7 +9,5 @@ Your project description
 *Execute the scaffolded command*
 `php <%=PROJECT_NAME%> <%=COMMAND_NAMESPACE%>:<%=COMMAND_NAME%>`
 
-## Testing
-
 ## Contributing
           
