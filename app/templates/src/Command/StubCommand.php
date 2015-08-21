@@ -1,6 +1,6 @@
 <?php
 
-namespace <%=PHP_NAMESPACE%>\Command;
+namespace <%=PHP_NAMESPACE%>\Command\<%=PHP_NAMESPACE%>;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
