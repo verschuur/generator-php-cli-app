@@ -57,7 +57,8 @@ module.exports = yeoman.generators.Base.extend({
       this.destinationPath('composer.json'), 
       { 
         PROJECT_NAME: this.settings.entrypointName,
-        PHP_NAMESPACE: this.settings.phpNamespace
+        PHP_NAMESPACE: this.settings.phpNamespace,
+        APPLICATION_VERSION: this.settings.appVersion,
       }
     );
 
