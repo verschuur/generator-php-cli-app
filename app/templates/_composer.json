@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "<%=PHP_NAMESPACE%>\\": "src\\<%=PHP_NAMESPACE%>"
+            "<%=PHP_NAMESPACE%>\\": "src"
         }
     }
 }
