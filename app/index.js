@@ -57,7 +57,8 @@ module.exports = yeoman.generators.Base.extend({
       this.destinationPath('composer.json'), 
       { 
         PROJECT_NAME: this.settings.entrypointName,
-        PHP_NAMESPACE: this.settings.phpNamespace
+        PHP_NAMESPACE: this.settings.phpNamespace,
+        APPLICATION_VERSION: this.settings.appVersion,
       }
     );
 
@@ -86,8 +87,8 @@ module.exports = yeoman.generators.Base.extend({
     );
 
     this.fs.copyTpl(
-      this.templatePath('src/App/Command/StubCommand.php'),
-      this.destinationPath('src/' + this.settings.phpNamespace + '/Command/' + this.settings.phpClassName + '.php'), 
+      this.templatePath('src/Command/StubCommand.php'),
+      this.destinationPath('src/Command/' + this.settings.phpNamespace + '/' + this.settings.phpClassName + '.php'), 
       { 
         PHP_NAMESPACE: this.settings.phpNamespace,
         PHP_CLASSNAME: this.settings.phpClassName,
@@ -100,15 +101,17 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.spawnCommand('composer', ['install'])
-      .on('exit', function (err) {
-        if(err === 0) {
-          this.log.write('Scaffolding complete. Run your app by calling ');
-          this.log.write(chalk.green('php ' + this.settings.entrypointName + '\n'));
-          this.log.write(chalk.red('Update your composer.json package name. It still has the default vendor name.' + '\n'));
-          this.log.write(chalk.white('Don\'t forget to update the README.md and the rest of the composer.json settings (author, description etc).' + '\n'));
-        }
-      }.bind(this));    
+    if(typeof this.options.skipInstall === 'undefined') {
+      this.spawnCommand('composer', ['install'])
+        .on('exit', function (err) {
+          if(err === 0) {
+            this.log.write('Scaffolding complete. Run your app by calling ');
+            this.log.write(chalk.green('php ' + this.settings.entrypointName + '\n'));
+            this.log.write(chalk.red('Update your composer.json package name. It still has the default vendor name.' + '\n'));
+            this.log.write(chalk.white('Don\'t forget to update the README.md and the rest of the composer.json settings (author, description etc).' + '\n'));
+          }
+        }.bind(this));    
+      }
   },
 
 });

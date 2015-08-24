@@ -1,11 +1,23 @@
 {
 	"name": "vendorname/<%=PROJECT_NAME%>",
-    "require": {
+    "description": "",
+    "version": "<%=APPLICATION_VERSION%>",
+    "keywords": [""],
+    "license": "",
+    "authors": [
+        {
+            "name": "John Doe",
+            "email": "johndoe@foo.bar",
+            "homepage": "http://github.com",
+            "role": "Developer"
+        }
+    ],
+	"require": {
         "symfony/console": "^2.7"
     },
     "autoload": {
         "psr-4": {
-            "<%=PHP_NAMESPACE%>\\": "src\\<%=PHP_NAMESPACE%>"
+            "<%=PHP_NAMESPACE%>\\": "src"
         }
     }
 }
