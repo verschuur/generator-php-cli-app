@@ -10,7 +10,7 @@ If you don't already have it installed, install [Yeoman](http://yeoman.io).
 
 Install the generator
 
-	npm install -g php-cli-app
+	npm install -g generator-php-cli-app
 
 ## Using the generator
 
