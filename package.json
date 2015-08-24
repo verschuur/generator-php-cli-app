@@ -1,10 +1,10 @@
 {
-  "name": "generator-php-commandline-app",
+  "name": "generator-php-cli-app",
   "version": "1.0.0",
-  "description": "Yeoman generator to scaffold a PHP command line app based on Symfony's Console Component.",
+  "description": "Yeoman generator to scaffold a PHP CLI app based on Symfony's Console Component.",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "gverschuur/generator-php-commandline-app",
+  "repository": "gverschuur/generator-php-cli-app",
   "author": {
     "name": "Govert Verschuur",
     "email": "govert.verschuur@gmail.com",
@@ -23,7 +23,7 @@
     "symfony",
     "console",
     "PHP",
-    "command line"
+    "cli"
   ],
   "dependencies": {
     "chalk": "^1.0.0",
