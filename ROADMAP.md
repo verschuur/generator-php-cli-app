@@ -18,18 +18,21 @@ Unless specified, *namespace* refers to the **command** namespace.
 	- [x] Composer.json project name and autoload path settings.
 
 ## v1.1
-- [ ] Extend the generator with:
-	- [ ] Allow custom PHP and command namespacing.
+- [x] User input for vendor name to set the correct vendor name in composer.json 
 
 ## v1.2
 - [ ] Extend the generator with:
-	- [ ] Generating multiple commands, based on a space separated input. For example:
+	- [ ] Allow custom PHP and command namespacing.
 
 ## v1.3
 - [ ] Extend the generator with:
-	- [ ] Adding options and arguments to the commands through a interactive dialog.
+	- [ ] Generating multiple commands, based on a space separated input. For example:
 
 ## v1.4
+- [ ] Extend the generator with:
+	- [ ] Adding options and arguments to the commands through a interactive dialog.
+
+## v1.5
 - [ ] Extend the generator with:
 	- [ ] Generate an app based on a config json file which defines the namespace, commands, options etc.
 
