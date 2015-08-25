@@ -28,34 +28,31 @@ module.exports = yeoman.generators.Base.extend({
     };
   },
 
-  // prompting: function () {    
-  //   var done = this.async();
- 
-  //   // Have Yeoman greet the user.
-  //   this.log(yosay(
-  //     'Welcome to the slick ' + chalk.red('SymfonyConsoleScaffolding') + ' generator!'
-  //   ));
+  prompting: function () {    
+    var done = this.async();
 
-  //   var prompts = [{
-  //     type: 'confirm',
-  //     name: 'someOption',
-  //     message: 'Would you like to enable this option?',
-  //     default: true
-  //   }];
+    var prompts = [
+    {
+      type    : 'input',
+      name    : 'username',
+      message : 'What\'s your Github username',
+      default: 'vendor'
+    }];
 
-  //   this.prompt(prompts, function (props) {
-  //     this.props = props;
-  //     // To access props later use this.props.someOption;
 
-  //     done();
-  //   }.bind(this));
-  // },
+    this.prompt(prompts, function (props) {
+      this.props = props;
+
+      done();
+    }.bind(this));
+  },
 
   configuring: function () {    
     this.fs.copyTpl(
       this.templatePath('_composer.json'),
       this.destinationPath('composer.json'), 
       { 
+        VENDOR_NAME: this.props.username,
         PROJECT_NAME: this.settings.entrypointName,
         PHP_NAMESPACE: this.settings.phpNamespace,
         APPLICATION_VERSION: this.settings.appVersion,
@@ -107,7 +104,6 @@ module.exports = yeoman.generators.Base.extend({
           if(err === 0) {
             this.log.write('Scaffolding complete. Run your app by calling ');
             this.log.write(chalk.green('php ' + this.settings.entrypointName + '\n'));
-            this.log.write(chalk.red('Update your composer.json package name. It still has the default vendor name.' + '\n'));
             this.log.write(chalk.white('Don\'t forget to update the README.md and the rest of the composer.json settings (author, description etc).' + '\n'));
           }
         }.bind(this));    

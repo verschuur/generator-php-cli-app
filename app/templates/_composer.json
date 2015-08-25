@@ -1,5 +1,5 @@
 {
-	"name": "vendorname/<%=PROJECT_NAME%>",
+	"name": "<%=VENDOR_NAME%>/<%=PROJECT_NAME%>",
     "description": "",
     "version": "<%=APPLICATION_VERSION%>",
     "keywords": [""],
