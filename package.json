@@ -1,6 +1,6 @@
 {
   "name": "generator-php-cli-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Yeoman generator to scaffold a PHP CLI app based on Symfony's Console Component.",
   "license": "MIT",
   "main": "app/index.js",
