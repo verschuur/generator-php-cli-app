@@ -1,6 +1,4 @@
-<?php
-
-namespace <%=PHP_NAMESPACE%>\Command\<%=PHP_NAMESPACE%>;
+<?php namespace <%=VENDOR_NAME%>\<%=APP_NAMESPACE%>\Command\<%=CLASS_COMMAND_NAMESPACE%>;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -12,7 +10,7 @@ class <%=PHP_CLASSNAME%> extends Command {
 
 	protected function configure() {
         $this
-			->setName('<%=COMMAND_NAMESPACE%>:<%=COMMAND_NAME%>')
+			->setName('<%=CLI_COMMAND_NAMESPACE%>:<%=COMMAND_NAME%>')
             ->setDescription('<%=COMMAND_DESCRIPTION%>')
             ->setHelp('<%=COMMAND_HELP%>');
 		
@@ -20,7 +18,8 @@ class <%=PHP_CLASSNAME%> extends Command {
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output) {
-		$output->writeln('<%=COMMAND_NAMESPACE%>:<%=COMMAND_NAME%> called');
-        // your command code goes here.
+		// your command code goes here.
+		$output->writeln('<%=CLI_COMMAND_NAMESPACE%>:<%=COMMAND_NAME%> called');
+        
     }
 }

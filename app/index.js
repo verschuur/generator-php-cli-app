@@ -16,46 +16,88 @@ module.exports = yeoman.generators.Base.extend({
    * Running context priorities
    * http://yeoman.io/authoring/running-context.html
    */
-  initializing: function () {    
-    this.settings = {
-      phpNamespace: cc.pascalCase(this.appname),
-      phpClassName: cc.pascalCase(this.appname) + 'Command', // PHP file and classname (with the 'Command' suffix)
-      commandNamespace: cc.paramCase(this.appname), // command namespace, e.g. foobar:example (foobar)
-      commandName: cc.paramCase('example'), // command name, e.g. foobar:example (example)
-      appName: cc.titleCase(this.appname), // app name used in composer and app settings
-      appVersion: '1.0', // app version used in composer and app settings
-      entrypointName: cc.paramCase(this.appname), // app entry point / php executable
-    };
-  },
+  initializing: function () {},
 
   prompting: function () {    
     var done = this.async();
+    var self = this;
 
     var prompts = [
-    {
-      type    : 'input',
-      name    : 'username',
-      message : 'What\'s your Github username',
-      default: 'vendor'
-    }];
+      {
+        type    : 'input',
+        name    : 'app_name',
+        message : 'Your app name (this will be used as default in the various namespaces)',
+        default: this.appname,
+        filter: function(response) {
+          return cc.ucFirst(cc.camelCase(response));
+        }
+      }, 
+      {
+        type    : 'input',
+        name    : 'app_namespace',
+        message : 'The PHP namespace for your app (the namespace will be automatically prepended with your github name)',
+        default: function(answers) {
+          return answers.app_name;
+        }
+      },
+      {
+        type    : 'input',
+        name    : 'entrypoint',
+        message : 'App entry point name',
+        default: function(answers) {
+          return cc.lower(answers.app_name);
+        }
+      },
+      {
+        type    : 'input',
+        name    : 'cli_command_namespace',
+        message : 'The command namespace (e.g. the "mypackage" in "mypackage:mycommand")',
+        default: function(answers) {
+          return cc.lower(answers.app_name);
+        }
+      },
+      {
+        type    : 'input',
+        name    : 'default_command',
+        message : 'Default command name',
+        default: 'example'
+      },
+      {
+        type    : 'input',
+        name    : 'app_version',
+        message : 'App version',
+        default: 'v1.0.0'
+      },
+      {
+        type    : 'input',
+        name    : 'vendor_name',
+        message : 'What\'s your Github vendor_name',
+        default: 'vendor',
+        store   : true
+      }
+    ];
 
 
     this.prompt(prompts, function (props) {
       this.props = props;
-
       done();
     }.bind(this));
   },
 
-  configuring: function () {    
+  configuring: function () {
+    this.props.php_classname = cc.ucFirst(cc.camelCase(this.props.default_command));
+    this.props.class_command_namespace = cc.ucFirst(cc.camelCase(this.props.cli_command_namespace));
+  }, 
+
+  writing: function () {     
     this.fs.copyTpl(
       this.templatePath('_composer.json'),
       this.destinationPath('composer.json'), 
       { 
-        VENDOR_NAME: this.props.username,
-        PROJECT_NAME: this.settings.entrypointName,
-        PHP_NAMESPACE: this.settings.phpNamespace,
-        APPLICATION_VERSION: this.settings.appVersion,
+        VENDOR_NAME: this.props.vendor_name,
+        PROJECT_NAME: this.props.entrypoint,
+        APP_NAMESPACE: this.props.app_namespace,
+        APPLICATION_VERSION: this.props.app_version,
       }
     );
 
@@ -63,34 +105,44 @@ module.exports = yeoman.generators.Base.extend({
       this.templatePath('_README.md'),
       this.destinationPath('README.md'), 
       { 
-        APPLICATION_NAME: this.settings.appName,
-        COMMAND_NAMESPACE: this.settings.commandNamespace,
-        COMMAND_NAME: this.settings.commandName,
-        PROJECT_NAME: this.settings.entrypointName
+        APPLICATION_NAME: this.props.app_name,
+        PROJECT_NAME: this.props.entrypoint
       }
     );
-  },
-
-  writing: function () {    
+  
     this.fs.copyTpl(
       this.templatePath('_app'),
-      this.destinationPath(this.settings.entrypointName), 
+      this.destinationPath(this.props.entrypoint), 
       { 
-        PHP_NAMESPACE: this.settings.phpNamespace,
-        APPLICATION_NAME: this.settings.appName,
-        APPLICATION_VERSION: this.settings.appVersion,
-        PHP_CLASSNAME: this.settings.phpClassName
+        VENDOR_NAME: this.props.vendor_name,
+        APP_NAMESPACE: this.props.app_namespace,
+        CLI_COMMAND_NAMESPACE: this.props.cli_command_namespace,
+        CLASS_COMMAND_NAMESPACE: this.props.class_command_namespace,
+        APPLICATION_NAME: this.props.app_name,
+        APPLICATION_VERSION: this.props.app_version,
+        COMMAND_NAME: this.props.default_command,
+        PHP_CLASSNAME: this.props.php_classname,
       }
     );
-
+console.log(this.props.cli_command_namespace);
     this.fs.copyTpl(
       this.templatePath('src/Command/StubCommand.php'),
-      this.destinationPath('src/Command/' + this.settings.phpNamespace + '/' + this.settings.phpClassName + '.php'), 
+      this.destinationPath('src/' 
+        + this.props.vendor_name 
+        + '/' 
+        + this.props.app_namespace 
+        + '/Command/' 
+        + this.props.class_command_namespace
+        + '/'
+        + this.props.php_classname 
+        + '.php'), 
       { 
-        PHP_NAMESPACE: this.settings.phpNamespace,
-        PHP_CLASSNAME: this.settings.phpClassName,
-        COMMAND_NAMESPACE: this.settings.commandNamespace,
-        COMMAND_NAME: this.settings.commandName,
+        VENDOR_NAME: this.props.vendor_name,
+        APP_NAMESPACE: this.props.app_namespace,
+        PHP_CLASSNAME: this.props.php_classname,
+        CLI_COMMAND_NAMESPACE: this.props.cli_command_namespace,
+        CLASS_COMMAND_NAMESPACE: this.props.class_command_namespace,
+        COMMAND_NAME: this.props.default_command,
         COMMAND_DESCRIPTION: 'The command description goes here',
         COMMAND_HELP: 'The command help text goes here'
       }
@@ -103,7 +155,7 @@ module.exports = yeoman.generators.Base.extend({
         .on('exit', function (err) {
           if(err === 0) {
             this.log.write('Scaffolding complete. Run your app by calling ');
-            this.log.write(chalk.green('php ' + this.settings.entrypointName + '\n'));
+            this.log.write(chalk.green('php ' + this.props.entrypoint + '\n'));
             this.log.write(chalk.white('Don\'t forget to update the README.md and the rest of the composer.json settings (author, description etc).' + '\n'));
           }
         }.bind(this));    

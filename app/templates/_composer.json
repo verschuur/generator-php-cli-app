@@ -17,7 +17,8 @@
     },
     "autoload": {
         "psr-4": {
-            "<%=PHP_NAMESPACE%>\\": "src"
+            "<%=VENDOR_NAME%>\\<%=APP_NAMESPACE%>\\": "./src"
         }
-    }
+    },
+    "license": "MIT"
 }
