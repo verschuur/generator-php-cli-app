@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "<%=VENDOR_NAME%>\\<%=APP_NAMESPACE%>\\": "./src"
+            "<%=VENDOR_NAME%>\\<%=APP_NAMESPACE%>\\": "./src/<%=VENDOR_NAME%>/<%=APP_NAMESPACE%>"
         }
     },
     "license": "MIT"
