@@ -19,15 +19,15 @@ describe('php-commandline-app', function () {
     generator = this.generator;
   });
 
-  // test settings
-  it('creates correct settings', function () {
-    assert.equal(generator.generator.settings.phpNamespace, cc.pascalCase(generator.generator.appname));
-    assert.equal(generator.generator.settings.phpClassName, cc.pascalCase(generator.generator.appname) + 'Command');
-    assert.equal(generator.generator.settings.commandNamespace, cc.paramCase(generator.generator.appname));
-    assert.equal(generator.generator.settings.commandName, 'example');
-    assert.equal(generator.generator.settings.appVersion, '1.0');
-    assert.equal(generator.generator.settings.appName, cc.titleCase(generator.generator.appname));
-    assert.equal(generator.generator.settings.entrypointName, cc.paramCase(generator.generator.appname));
+  it('creates correct properties based on default input', function () {
+    assert.equal(generator.generator.props.app_namespace, generator.generator.appname);
+    assert.equal(generator.generator.props.php_classname, generator.generator.default_command);
+    assert.equal(generator.generator.props.class_command_namespace, generator.generator.class_command_namespace);
+    assert.equal(generator.generator.props.cli_command_namespace, cc.paramCase(generator.generator.cli_command_namespace));
+    assert.equal(generator.generator.props.default_command, 'example');
+    assert.equal(generator.generator.props.app_version, '1.0');
+    assert.equal(generator.generator.props.appname, cc.titleCase(generator.generator.appname));
+    assert.equal(generator.generator.props.entrypoint, cc.paramCase(generator.generator.appname));
   });
 
   // test scaffolding/copying of files
@@ -36,6 +36,6 @@ describe('php-commandline-app', function () {
   });
 
   it('creates app entrypoint', function () {
-    assert.file(generator.generator.settings.entrypointName);
+    assert.file(generator.generator.props.entrypoint);
   });
 });
