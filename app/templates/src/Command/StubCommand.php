@@ -20,6 +20,5 @@ class <%=PHP_CLASSNAME%> extends Command {
 	protected function execute(InputInterface $input, OutputInterface $output) {
 		// your command code goes here.
 		$output->writeln('<%=CLI_COMMAND_NAMESPACE%>:<%=COMMAND_NAME%> called');
-        
     }
 }
