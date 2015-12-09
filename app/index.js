@@ -128,11 +128,9 @@ module.exports = yeoman.generators.Base.extend({
       { 
         VENDOR_NAME: this.props.vendor_name,
         APP_NAMESPACE: this.props.app_namespace,
-        CLI_COMMAND_NAMESPACE: this.props.cli_command_namespace,
         CLASS_COMMAND_NAMESPACE: this.props.class_command_namespace,
         APPLICATION_NAME: this.props.app_name,
         APPLICATION_VERSION: this.props.app_version,
-        COMMAND_NAME: this.props.default_command,
         PHP_CLASSNAME: this.props.php_classname,
       }
     );
