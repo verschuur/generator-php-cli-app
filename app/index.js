@@ -38,6 +38,9 @@ module.exports = yeoman.generators.Base.extend({
         message : 'The PHP namespace for your app (the namespace will be automatically prepended with your github name)',
         default: function(answers) {
           return answers.app_name;
+        },
+        filter: function(response) {
+          return cc.ucFirst(cc.camelCase(response));
         }
       },
       {
@@ -46,6 +49,9 @@ module.exports = yeoman.generators.Base.extend({
         message : 'App entry point name',
         default: function(answers) {
           return cc.lower(answers.app_name);
+        },
+        filter: function(response) {
+          return cc.paramCase(cc.lower(response));
         }
       },
       {
@@ -54,13 +60,19 @@ module.exports = yeoman.generators.Base.extend({
         message : 'The command namespace (e.g. the "mypackage" in "mypackage:mycommand")',
         default: function(answers) {
           return cc.lower(answers.app_name);
+        },
+        filter: function(response) {
+          return cc.paramCase(cc.lower(response));
         }
       },
       {
         type    : 'input',
         name    : 'default_command',
         message : 'Default command name',
-        default: 'example'
+        default: 'example',
+        filter: function(response) {
+          return cc.paramCase(cc.lower(response));
+        }
       },
       {
         type    : 'input',
