@@ -2,6 +2,7 @@
   "name": "generator-php-cli-app",
   "version": "1.1.2",
   "description": "Yeoman generator to scaffold a PHP CLI app based on Symfony's Console Component.",
+  "homepage": "https://github.com/verschuur/generator-php-cli-app",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "gverschuur/generator-php-cli-app",
@@ -10,9 +11,50 @@
     "email": "govert.verschuur@gmail.com",
     "url": "https://github.com/gverschuur"
   },
-  "scripts": {
-    "test": "mocha"
+  "jest": {
+    "testEnvironment": "node"
   },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "xo",
+      "prettier"
+    ],
+    "env": {
+      "jest": true,
+      "node": true
+    },
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "printWidth": 90
+        }
+      ]
+    },
+    "plugins": [
+      "prettier",
+      "markdownlint-cli"
+    ]
+  },
+  "scripts": {
+    "pretest": "eslint .",
+    "test": "jest",
+    "format": "prettier-standard 'generators/**/*.js'"
+  },
+  "files": [
+    "generators"
+  ],
   "keywords": [
     "yeoman-generator",
     "yo",
@@ -32,6 +74,18 @@
     "yosay": "^2.0.0"
   },
   "devDependencies": {
-    "mocha": "*"
+    "eslint": "^6.2.2",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-config-xo": "^0.26.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^3.0.4",
+    "jest": "^24.0.0",
+    "lint-staged": "^9.2.5",
+    "prettier": "^1.18.2",
+    "yeoman-assert": "^3.1.0",
+    "yeoman-test": "^2.0.0"
+  },
+  "engines": {
+    "npm": ">= 4.0.0"
   }
 }
