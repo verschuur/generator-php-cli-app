@@ -1,0 +1,24 @@
+{
+  "name": "<%=VENDOR_NAME%>/<%=PROJECT_NAME%>",
+  "description": "",
+  "version": "<%=APPLICATION_VERSION%>",
+  "keywords": [""],
+  "license": "",
+  "authors": [
+    {
+      "name": "John Doe",
+      "email": "johndoe@foo.bar",
+      "homepage": "http://github.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "symfony/console": "^2.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "<%=VENDOR_NAME%>\\<%=APP_NAMESPACE%>\\": "./src/<%=VENDOR_NAME%>/<%=APP_NAMESPACE%>"
+    }
+  },
+  "license": "MIT"
+}
