@@ -1,10 +1,10 @@
-# <%=APPLICATION_NAME%>
+# My Package
 
 Your project description
 
 ## Usage
+
 *Show all the commands*
-`php <%=PROJECT_NAME%>`
+`php my-package`
 
 ## Contributing
-          
