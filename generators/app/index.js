@@ -59,27 +59,24 @@ module.exports = class extends Generator {
       });
     });
   }
+  
+  configuring()
+  {
+    //configure generator settings here
+  }
 
-    /**
+  /**
    * Scaffold the various files and directories
    */
   writing() {
     readmeWriter(this);
   }
+  
+  end() {
+    this.log('Thanks and goodbye! 👋🏼');
+  }
+  // OLD
 
-  // prompting() {    
-  //   var done = this.async();
-    
-  //   var prompts = [
-  //     {
-  //       type    : 'input',
-  //       name    : 'username',
-  //       message : 'What\'s your Github username',
-  //       default: 'vendor'
-  //     }
-  //   ];
-      
-      
   //   this.prompt(prompts, function (props) {
   //     this.props = props;
         

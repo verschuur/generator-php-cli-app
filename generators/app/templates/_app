@@ -3,8 +3,8 @@
 require __DIR__.'/vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
-use <%=PHP_NAMESPACE%>\Command\<%=APP_NAMESPACE%>\<%=COMMAND_NAME%>;
+use <%=VENDOR_NAMESPACE_PHP%>\Commands\<%=COMMAND_CLASSNAME%>;
 
-$application = new Application('<%=APPLICATION_NAME%>', '<%=APPLICATION_VERSION%>');
-$application->add(new <%=COMMAND_NAME%>());
+$application = new Application('<%=APP_NAME%>', '<%=APP_VERSION%>');
+$application->add(new <%=COMMAND_CLASSNAME%>());
 $application->run();

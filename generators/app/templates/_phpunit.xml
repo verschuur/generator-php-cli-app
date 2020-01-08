@@ -9,7 +9,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="<%=PACKAGE_NAME%> Unit Test Suite">
+        <testsuite name="<%=APP_NAME%> Test Suite">
             <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>

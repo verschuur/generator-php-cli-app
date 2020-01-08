@@ -1,0 +1,15 @@
+vendor.name (free text): VENDOR_NAME ✅
+vendor.slug (slugged): VENDOR_SLUG ✅
+
+author.name (free text): AUTHOR_NAME ✅
+author.email (free text): AUTHOR_EMAIL ✅
+
+app.name (free text): APP_NAME ✅
+app.slug (slugged): APP_SLUG ✅
+app.license: APP_LICENSE ✅
+app.version: APP_VERSION ✅
+app.namespace.command (->commandnamespace<-:commandname) COMMAND_NAMESPACE ✅
+app.namespace.php (Vendor/MyPackage): VENDOR_NAMESPACE_PHP ✅
+app.namespace.composer ((Vendor\\MyPackage)) : VENDOR_NAMESPACE_COMPOSER ✅
+app.command.name: COMMAND_NAME ✅
+app.command.class: COMMAND_CLASSNAME (class name and php file name) ✅
