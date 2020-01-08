@@ -6,12 +6,12 @@ const helpers = require('yeoman-test');
 var fs = require("fs");
 
 const answers = {
-  'package.name': 'My Package',
+  'app.name': 'My Package',
   'vendor.name': 'Test Vendor',
   'author.name': 'Test Author',
   'author.email': 'test.author@example.org',
-  'package.license': 'MIT',
-  'package.namespace': 'TestVendor\\MyPackage'
+  'app.license': 'MIT',
+  'app.namespace': 'TestVendor\\MyPackage'
 };
 
 /**

@@ -60,6 +60,13 @@ module.exports = class extends Generator {
     });
   }
 
+    /**
+   * Scaffold the various files and directories
+   */
+  writing() {
+    readmeWriter(this);
+  }
+
   // prompting() {    
   //   var done = this.async();
     
