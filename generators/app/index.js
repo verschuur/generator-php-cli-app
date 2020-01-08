@@ -47,29 +47,37 @@ module.exports = class extends Generator {
       }
     ).finally(() => {
       return this.prompt(prompts(this)).then(props => {
-        _.merge(this.props, props);
-          
-        // set the rest of the properties based on the answers
-        this.props.vendor.slug = _.kebabCase(this.props.vendor.name);
-        this.props.app.slug = _.kebabCase(this.props.app.name);
-        this.props.app.version = '1.0';
-        //this.props.app.namespace.php = 
-        //this.props.app.namespace.composer = 
+        // The following props are merged from the prompts:
+        // app.name
+        // vendor.name
+        // app.php.namespace.
+        // app.license
+        // app.command.name
+        // app.command.namespace
+        // author.name
+        // author.email
 
+        _.merge(this.props, props);
       });
     });
   }
   
   configuring()
   {
-    //configure generator settings here
+    this.props.vendor.slug = _.kebabCase(this.props.vendor.name);
+    this.props.app.slug = _.kebabCase(this.props.app.name);
+    this.props.app.version = '1.0';
+    this.props.app.composer =  {namespace: this.props.app.php.namespace.replace('\\', '\\\\')};
+    this.props.app.command.class = _.upperFirst(_.camelCase(this.props.app.command.name));
+
+    console.log(this.props);
   }
 
   /**
    * Scaffold the various files and directories
    */
   writing() {
-    readmeWriter(this);
+    //readmeWriter(this);
   }
   
   end() {

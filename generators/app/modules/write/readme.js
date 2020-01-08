@@ -8,7 +8,9 @@ module.exports = function(generator) {
     generator.destinationPath("README.md"),
     {
       APP_NAME: generator.props.app.name,
-      APP_SLUG: generator.props.app.slug
+      APP_SLUG: generator.props.app.slug,
+      VENDOR_NAMESPACE_PHP: generator.props.app.namespace.php,
+      VENDOR_NAMESPACE_COMPOSER: generator.props.app.namespace.composer
     }
   );
 };

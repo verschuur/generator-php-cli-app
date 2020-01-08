@@ -18,29 +18,60 @@ module.exports = function(generator) {
       type: "question",
       name: "app.name",
       message: "App name",
-      default: generator.appname
+      default: generator.appname,
+      validate: function(input, answers) {
+        if (!input) {
+          return 'App name is required.';
+        }
+        return true;
+      }
     },
     {
       type: "question",
       name: "vendor.name",
       message: "Vendor name",
-      default: generator.props.vendor.name
-    },
-    {
-      type: "input",
-      name: "app.namespace.php",
-      message: "PHP namespace",
-      default: function(prompts) {
-        return `${classname(prompts.vendor.name)}\\${classname(prompts.app.name)}`;
+      default: generator.props.vendor.name,
+      validate: function(input, answers) {
+        if (!input) {
+          return 'Vendor name is required.';
+        }
+        return true;
       }
     },
     {
       type: "question",
-      name: "app.basename",
-      message:
-      "Package basename (used for naming the various files such as the ServiceProvider, config etc)",
-      default: function(prompts) {
-        return classname(prompts.app.name);
+      name: "app.php.namespace",
+      message: "PHP namespace",
+      default: function(answers) {
+        return `${classname(answers.vendor.name)}\\${classname(answers.app.name)}`;
+      },
+      validate: function(input, answers) {
+        if (!input) {
+          return 'PHP namespace is required.';
+        }
+        return true;
+      }
+    },
+    {
+      type: "question",
+      name: "app.command.namespace",
+      message: "Command namespace",
+      default: function(answers) {
+        return _.kebabCase(answers.app.name);
+      }
+    },
+    {
+      type: "question",
+      name: "app.command.name",
+      message: "Command name",
+      default: function(answers) {
+        return 'run';
+      },
+      validate: function(input, answers) {
+        if (!input) {
+          return 'At least one command name is required.';
+        }
+        return true;
       }
     },
     {
