@@ -8,7 +8,6 @@ var cc = require('change-case');
 
 const prompts = require("./modules/prompts");
 const readmeWriter = require("./modules/write/readme");
-const appName = require("./modules/prompts/appName.js");
 
 module.exports = class extends Generator {
 
@@ -47,10 +46,7 @@ module.exports = class extends Generator {
         };
       }
     ).finally(() => {
-      //return this.prompt(prompts(this)).then(props => {
-        return this.prompt(
-          [appName(this)]
-        ).then(props => {
+      return this.prompt(prompts(this)).then(props => {
         // The following props are merged from the prompts:
         // app.name
         // vendor.name

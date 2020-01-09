@@ -1,9 +1,8 @@
 /**
-* Copies the config file from the generator templates to the target dir,
-* changing the name of the file to the slugged version of the package name
+* Prompt for <>
 *
 * @param  {yeoman-generator} generator The Yeoman generator instance
-* @return {array} Array of question prompts
+* @return {object} Object containing information for single prompt
 */
 
 module.exports = function(generator) {
